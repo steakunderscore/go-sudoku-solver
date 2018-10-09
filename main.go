@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	// "os"
+	"os"
 )
 
 type Value int
@@ -23,7 +23,7 @@ func (b *Board) print() {
 	fmt.Println()
 }
 
-func (b *Board) takeInput() {
+func (b *Board) setTest1() {
 	b.values[0] = 1
 	b.values[1] = 0
 	b.values[2] = 3
@@ -106,13 +106,16 @@ func (b *Board) takeInput() {
 	b.values[79] = 7
 	b.values[80] = 8
 	return
-	// for i := 0 ; i < 9*9 ; i += 9 {
-	//   _, err := fmt.Scanf("%d %d %d %d %d %d %d %d %d\n", &b.values[i + 0], &b.values[i + 1], &b.values[i + 2], &b.values[i + 3], &b.values[i + 4], &b.values[i + 5], &b.values[i + 6], &b.values[i + 7], &b.values[i + 8])
-	//   if err != nil {
-	//     fmt.Printf("Input not formatted\n")
-	//     os.Exit(2)
-	//   }
-	// }
+}
+
+func (b *Board) takeInput() {
+	for i := 0; i < 9*9; i += 9 {
+		_, err := fmt.Scanf("%d %d %d %d %d %d %d %d %d\n", &b.values[i+0], &b.values[i+1], &b.values[i+2], &b.values[i+3], &b.values[i+4], &b.values[i+5], &b.values[i+6], &b.values[i+7], &b.values[i+8])
+		if err != nil {
+			fmt.Printf("Input not formatted\n")
+			os.Exit(2)
+		}
+	}
 }
 
 func (b *Board) row(i int) []Value {
@@ -214,6 +217,7 @@ func (b *Board) solve() {
 
 func main() {
 	b := Board{}
-	b.takeInput()
+	// b.takeInput()
+	b.setTest1()
 	b.solve()
 }
