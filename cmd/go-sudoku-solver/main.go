@@ -1,13 +1,11 @@
 package main
 
 import (
-  gss "github.com/steakunderscore/go-sudoku-solver/pkg/gss"
+	gss "github.com/steakunderscore/go-sudoku-solver/pkg/gss"
 )
-
 
 func main() {
 	b := gss.Board{}
-	// b.TakeInput()
-	b.SetTest1()
+	b.TakeInput()
 	b.Solve()
 }
