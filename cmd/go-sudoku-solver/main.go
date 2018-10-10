@@ -8,4 +8,5 @@ func main() {
 	b := gss.Board{}
 	b.TakeInput()
 	b.Solve()
+	b.Print()
 }
