@@ -2,6 +2,7 @@ package gss
 
 import (
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -13,10 +14,14 @@ func (b *Board) finalizeValue(value Value, loc int) {
 	b.Values[loc] = value
 }
 
-func (b *Board) Print() {
+func (b *Board) Print(out io.Writer) {
+  fmt.Fprintln(out, "Result:")
 	for i := 0; i < 9; i++ {
 		row := b.row(i)
-		fmt.Printf("%d %d %d %d %d %d %d %d %d\n", row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
+		for j := 0; j < (9 - 1); j++ {
+			fmt.Fprintf(out, "%d ", row[j])
+		}
+		fmt.Fprintf(out, "%d\n", row[8])
 	}
 	fmt.Println()
 }
