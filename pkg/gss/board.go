@@ -15,7 +15,7 @@ func (b *Board) finalizeValue(value Value, loc int) {
 }
 
 func (b *Board) Print(out io.Writer) {
-  fmt.Fprintln(out, "Result:")
+	fmt.Fprintln(out, "Result:")
 	for i := 0; i < 9; i++ {
 		row := b.row(i)
 		for j := 0; j < (9 - 1); j++ {
@@ -26,12 +26,12 @@ func (b *Board) Print(out io.Writer) {
 	fmt.Println()
 }
 
-func (b *Board) TakeInput() {
-	fmt.Println("Please enter starting Sudoku:")
+func (b *Board) TakeInput(in io.Reader, out io.Writer) {
+	fmt.Fprintln(out, "Enter starting Sudoku:")
 	for i := 0; i < 9*9; i += 9 {
-		_, err := fmt.Scanf("%d %d %d %d %d %d %d %d %d\n", &b.Values[i+0], &b.Values[i+1], &b.Values[i+2], &b.Values[i+3], &b.Values[i+4], &b.Values[i+5], &b.Values[i+6], &b.Values[i+7], &b.Values[i+8])
+		_, err := fmt.Fscanf(in, "%d %d %d %d %d %d %d %d %d\n", &b.Values[i+0], &b.Values[i+1], &b.Values[i+2], &b.Values[i+3], &b.Values[i+4], &b.Values[i+5], &b.Values[i+6], &b.Values[i+7], &b.Values[i+8])
 		if err != nil {
-			fmt.Printf("Input not formatted\n")
+			fmt.Fprintf(out, "Input not formatted\n")
 			os.Exit(2)
 		}
 	}

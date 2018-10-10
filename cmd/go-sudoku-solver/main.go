@@ -8,7 +8,7 @@ import (
 
 func main() {
 	b := gss.Board{}
-	b.TakeInput()
+	b.TakeInput(os.Stdin, os.Stdout)
 	b.Solve()
 	b.Print(os.Stdout)
 }
